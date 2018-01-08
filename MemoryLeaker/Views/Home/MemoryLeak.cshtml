@@ -1,0 +1,31 @@
+﻿@model MemoryLeaker.Models.MemoryDetails
+@{
+    ViewBag.Title = "Leak Memory";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<table>
+    <tr>
+        <td>
+            Working Set: 
+        </td>
+        <td>
+            @SizeHelper.FormatMB(@Model.WorkingSetMB)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            GC Total Memory:
+        </td>
+        <td>
+            @SizeHelper.FormatMB(@Model.GCTotalMemoryMB)
+        </td>
+    </tr>
+</table>
+<br/>
+
+@using (Html.BeginForm("CreateMemoryLeak", "Home")) {
+    <input type="text" name="leakSize"/>
+    <input type="submit" value="Create Leak" />
+}
